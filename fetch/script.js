@@ -16,13 +16,14 @@ function getApi (){
     .then((response) => response.json())
     .then((data) => updateTable(data))
     .catch((error) => console.error('Error loading users', error))
-    .finally(() => loading.classList.remove('loading'))
+    .finally(() => loading.style.display = 'none')
 }
 
 window.onload = getApi();
 
 function updateTable (users){
     let usersTable = document.querySelector(".users-table");
+    let hidden = document.getElementById("hidden");
     usersTable.innerHTML = "";
 
     users.forEach(user => {
@@ -43,5 +44,5 @@ function updateTable (users){
         usersTable.appendChild(row);
     });
 
-    usersTable.classList.remove('.hidden');
+    hidden.style.display = 'block'
 }
